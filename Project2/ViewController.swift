@@ -48,14 +48,19 @@ class ViewController: UIViewController {
         if sender.tag == correctAnswer {
             title = "Correct"
             score += 1
+            if score == 10 {
+                title = "YOU WIN! \nCONGRATULATION"
+                score = 0
+            }
         } else {
             title = "Wrong"
             score -= 1
         }
-        
+
         let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         present(ac, animated: true)
+        
     }
     
 }
