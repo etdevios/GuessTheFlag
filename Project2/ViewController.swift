@@ -16,8 +16,12 @@ class ViewController: UIViewController {
     var score = 0
     var correctAnswer = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(scoreTapped))
+//        (barButtonSystemItem: .action, target: self, action: #selector(scoreTapped))
         
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
         
@@ -41,7 +45,7 @@ class ViewController: UIViewController {
         
         correctAnswer = Int.random(in: 0...2)
         
-        title = "\(countries[correctAnswer].uppercased()) | Player score: \(score)"
+        title = "\(countries[correctAnswer].uppercased())"
     }
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
@@ -60,8 +64,17 @@ class ViewController: UIViewController {
         let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         present(ac, animated: true)
-        
     }
+    
+    @objc func scoreTapped() {
+        let ac = UIAlertController(title: "YOU SCORE IS", message: "\(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
+        present(ac, animated: true)
+       
+    }
+    
+   
+    
     
 }
 
